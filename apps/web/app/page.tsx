@@ -54,7 +54,7 @@ const LINKS = [
 ];
 
 async function getHello() {
-  return (await fetch("http://localhost:3001").then((res) => res.json())) as {
+  return (await fetch("http://localhost:8081").then((res) => res.json())) as {
     message: string;
   };
 }

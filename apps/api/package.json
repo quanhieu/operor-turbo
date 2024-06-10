@@ -18,18 +18,27 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "migrate-gen": "migrate create --template-file ./migrations/utils/template.ts --migrations-dir=./migrations/files",
+    "migrate-up": "NODE_ENV=local migrate --migrations-dir=\"./migrations/files\" --compiler=\"ts:./migrations/utils/ts-compiler.js\" --store=./migrations/utils/storage.ts --matches=*.ts up",
+    "migrate-down": "NODE_ENV=local migrate --migrations-dir=\"./migrations/files\" --compiler=\"ts:./migrations/utils/ts-compiler.js\" --store=./migrations/utils/storage.ts --matches=*.ts down"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.1.1",
     "@nestjs/core": "^10.0.0",
+    "@nestjs/mapped-types": "*",
+    "@nestjs/mongoose": "^10.0.6",
     "@nestjs/platform-express": "^10.0.0",
-    "@nestjs/typeorm": "^10.0.1",
+    "@nestjs/swagger": "^7.3.1",
+    "@types/mongoose-paginate-v2": "^1.6.5",
+    "migrate": "^2.1.0",
+    "mongodb": "^6.7.0",
+    "mongoose": "^8.4.1",
+    "mongoose-paginate-v2": "^1.8.2",
     "mysql2": "^3.6.3",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.1",
-    "typeorm": "^0.3.17"
+    "rxjs": "^7.8.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
