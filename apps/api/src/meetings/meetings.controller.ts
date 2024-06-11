@@ -1,8 +1,20 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { MeetingsService } from './meetings.service';
 import { CreateMeetingDto } from './dto/create-meeting.dto';
 import { UpdateMeetingDto } from './dto/update-meeting.dto';
+import { ApiTags } from '@nestjs/swagger';
+import { GetListMeetingDto } from './dto/get-list-meeting';
 
+@ApiTags('eetings')
 @Controller('meetings')
 export class MeetingsController {
   constructor(private readonly meetingsService: MeetingsService) {}
@@ -13,8 +25,8 @@ export class MeetingsController {
   }
 
   @Get()
-  findAll() {
-    return this.meetingsService.findAll();
+  findAll(@Query() query: GetListMeetingDto) {
+    return this.meetingsService.findAll(query);
   }
 
   @Get(':id')

@@ -1,23 +1,21 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, SchemaTypes } from 'mongoose';
 import { BaseSchema } from 'src/shared/schemas/base.schema';
-import { Ref } from 'src/shared/schemas/mongoose.type';
-import { User } from 'src/users/schemas/user.schema';
 
-export type MeetingDocument = User & Document;
+export type MeetingDocument = Meeting & Document;
 
 @Schema({ timestamps: true, collection: 'meetings' })
 export class Meeting extends BaseSchema {
-  @Prop({ required: true })
+  @Prop({ type: Number })
   start_day: number;
 
-  @Prop({ required: true })
+  @Prop({ type: Number })
   end_day: number;
 
-  @Prop({ required: true })
-  user_id: Ref<User>;
+  @Prop({ type: SchemaTypes.ObjectId, ref: 'User' })
+  user_id: string;
 
-  @Prop({ required: true })
+  @Prop({ type: Number })
   room_id: number;
 }
 
