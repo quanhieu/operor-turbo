@@ -109,32 +109,6 @@ export class UsersService {
       .exec();
 
     return data;
-
-    // if (limit === 0) {
-    //   const result = await this.userModel.find({ ...query }).exec();
-
-    //   return {
-    //     docs: result,
-    //     totalDocs: result.length,
-    //     page,
-    //     limit,
-    //     totalPages: 1,
-    //     prevPage: null,
-    //     nextPage: null,
-    //   };
-    // }
-
-    // const options = {
-    //   page,
-    //   limit,
-    //   collation: {
-    //     locale: 'en',
-    //   },
-    //   sort: {
-    //     ['createdAt']: 'desc',
-    //   },
-    // };
-    // return this.userModel.paginate({ deleted: false }, options);
   }
 
   findOne(id: string) {
