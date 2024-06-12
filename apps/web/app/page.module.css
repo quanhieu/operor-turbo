@@ -45,8 +45,10 @@
 
 .hero {
   display: flex;
-  position: relative;
+  /* position: relative; */
   place-items: center;
+  position: fixed;
+  width: 80%;
 }
 
 .heroContent {

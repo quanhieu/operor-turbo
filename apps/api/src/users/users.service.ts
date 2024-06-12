@@ -88,11 +88,7 @@ export class UsersService {
       },
       {
         $facet: {
-          docs: [
-            { $sort: { createdAt: -1 } },
-            { $skip: +offset },
-            { $limit: +limit },
-          ],
+          docs: [{ $sort: { id: 1 } }, { $skip: +offset }, { $limit: +limit }],
           total: [{ $count: 'docs' }],
         },
       },
