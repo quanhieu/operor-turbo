@@ -108,7 +108,14 @@ export class UsersService {
       .aggregate(aggregatePipeline, { allowDiskUse: true })
       .exec();
 
-    return data;
+    return data && data.length > 0
+      ? {
+          ...data[0],
+          page: +page,
+          limit: +limit,
+          offset,
+        }
+      : { docs: [], totalDocs: 0, page: +page, limit: +limit, offset };
   }
 
   findOne(id: string) {

@@ -9,7 +9,7 @@ export class GetListMeetingDto {
   @IsOptional()
   page?: number;
 
-  @ApiProperty({ type: Number, required: false, example: 0 })
+  @ApiProperty({ type: Number, required: false, example: 10 })
   @IsInt()
   @Type(() => Number)
   @IsOptional()
