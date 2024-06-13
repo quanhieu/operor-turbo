@@ -16,7 +16,6 @@
     "MONGODB_URI",
     "NEXT_PUBLIC_API_URL"
   ],
-  "globalDependencies": ["**/.env.*local"],
   "pipeline": {
     "build": {
       "dependsOn": [
