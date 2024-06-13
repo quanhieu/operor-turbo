@@ -33,6 +33,13 @@ export default function DemoComponent({ styles }: { styles: any}) {
     }
   }, [data])
 
+  useEffect(() => {
+    if (isCheck) {
+      setLoadedData([])
+      setPage(1)
+    }
+  }, [isCheck])
+
   return (
     <>
       <div className={styles.hero}>
