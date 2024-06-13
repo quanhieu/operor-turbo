@@ -1,4 +1,4 @@
-import { getDb } from '../utils/db';
+import { getDb } from './db';
 
 export const up = async () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
