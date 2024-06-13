@@ -1,6 +1,6 @@
 import { Tag } from 'antd';
 import { useMemo } from 'react'
-import { getRandomColor } from '../utils';
+import { getRandomColor } from '../../utils';
 
 export default function TableColumns() {
   const columns = useMemo(

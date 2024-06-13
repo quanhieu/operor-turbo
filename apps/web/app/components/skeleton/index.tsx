@@ -6,7 +6,7 @@ export default function SkeletonComponent({
   paragraph = { rows: 1, width: '100%' },
   children = null as any,
 }) {
-  return <Skeleton loading={loading} active avatar paragraph={paragraph}>
+  return <Skeleton loading={loading} active paragraph={paragraph}>
     {children}
   </Skeleton>
 }

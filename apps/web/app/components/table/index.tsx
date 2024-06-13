@@ -15,6 +15,7 @@ interface ITableCustom<T> {
   components?: TableProps<T>['components'];
   scrollToFirstRowOnChange?: boolean;
 }
+
 export default function TableCustom({ columns, dataSource, pagination, loading, ...props }: ITableCustom<any>) {
   return <Table 
     columns={columns}
