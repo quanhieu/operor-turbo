@@ -6,9 +6,9 @@
   ],
   "globalDotEnv": [
     ".env.development.local",
-        ".env.local",
-        ".env.development",
-        ".env"
+      ".env.local",
+      ".env.development",
+      ".env"
   ],
   "globalEnv": [
     "APP_PORT",
