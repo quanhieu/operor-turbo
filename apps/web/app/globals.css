@@ -22,10 +22,15 @@
   );
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  -ms-overflow-style: none;
 }
 
 html,
@@ -35,6 +40,7 @@ body {
 }
 
 body {
+  scrollbar-width: none;
   color: rgb(var(--foreground-rgb));
   /* background: linear-gradient(
       to bottom,
