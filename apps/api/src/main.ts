@@ -18,8 +18,8 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   const port = process.env.APP_PORT || 8081;
-  const hostname = process.env.APP_HOST || 'localhost';
-  await app.listen(port, () => {
+  const hostname = process.env.APP_HOST || '0.0.0.0';
+  await app.listen(port, hostname, () => {
     console.log(`Server running on http://${hostname}:${port}`, 'Bootstrap');
   });
 }
