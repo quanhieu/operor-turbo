@@ -14,7 +14,7 @@ export default function Page(): JSX.Element {
     <ErrorBoundary>
       <ConfigProvider theme={theme}>
         <main className={styles.main}>
-          <div className={styles.description}>
+          {/* <div className={styles.description}>
             <div>
               <a
                 href="https://vercel.com?utm_source=create-turbo&utm_medium=basic&utm_campaign=create-turbo"
@@ -32,7 +32,7 @@ export default function Page(): JSX.Element {
                 />
               </a>
             </div>
-          </div>
+          </div> */}
 
           <DemoComponent
             styles={styles}

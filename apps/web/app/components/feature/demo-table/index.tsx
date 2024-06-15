@@ -1,24 +1,29 @@
 import { useVT } from "virtualizedtableforantd4";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useCallback } from "react";
 import TableCustom from "../../core/table";
 import TableColumns from './table-column';
 import { IData, IDocs } from "../../../interfaces";
 
 export default function TableDemo({
-  data, isLoading, setPage, total, page, setPagesize
+  data, isLoading, total, page, setPagination
 }: {
-  data: IData<IDocs> | undefined;
   isLoading: boolean;
+  data: IData<IDocs> | undefined;
   total: number;
   page: number;
-  setPage: Dispatch<SetStateAction<number>>;
-  setPagesize: Dispatch<SetStateAction<number>>;
+  setPagination: Dispatch<SetStateAction<{
+    page: number;
+    pagesize: number;
+  }>>;
 }) {
   const [vt] = useVT(() => ({
     onScroll: async ({ isEnd }) => {
       if (isEnd) {
         if (data?.docs && data?.docs?.length * page < data.totalDocs) {
-          setPage((prev) => prev + 1)
+          setPagination((prev) => ({
+            ...prev,
+            page: prev.page + 1
+          }))
         }
       }
     },
@@ -28,6 +33,13 @@ export default function TableDemo({
     debug: false
   }), [data]);
 
+  const onChangePagination = useCallback((newPage: number) => {
+    setPagination((prev) => ({
+      ...prev,
+      page: newPage
+    }))
+  }, [])
+
   return (
     <TableCustom
       bordered
@@ -35,12 +47,14 @@ export default function TableDemo({
       dataSource={data?.docs || []}
       columns={TableColumns() as any}
       pagination={{
-        onChange: setPage,
+        onChange: onChangePagination,
         total,
         current: page,
         onShowSizeChange: (current: number, pageSize: number) => {
-          setPage(current)
-          setPagesize(pageSize)
+          setPagination({
+            page: current,
+            pagesize: pageSize
+          })
         },
         showTotal: (total: number, range: any) =>
           `${range[0]}-${range[1]} of ${total} items`,

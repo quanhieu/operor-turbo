@@ -1,11 +1,22 @@
+import { AxiosError } from "axios";
 import { IData, IDocs } from "../interfaces";
+import api from "./api";
+import { endpoint } from "./apiEndpoints";
 
-const baseServer = process.env.NEXT_PUBLIC_API_URL;
-
-export async function getUserList(page: number, limit: number) {
-  return (await fetch(`${baseServer}/users?page=${page}&limit=${limit}`)
-    .then((res) => res.json())
-    .catch((err) => {
-      throw new Error(err);
-    })) as IData<IDocs>;
+export async function getUserList(
+  page: number,
+  limit: number
+): Promise<IData<IDocs>> {
+  try {
+    const response = await api.get(endpoint.users.base, {
+      params: {
+        page,
+        limit,
+      },
+    });
+    return response?.data as IData<IDocs>;
+  } catch (err) {
+    const error = err as AxiosError;
+    throw new Error(error?.message);
+  }
 }

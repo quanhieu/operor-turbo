@@ -6,11 +6,14 @@ import { getRandomColor } from "../../../utils";
 import SkeletonComponent from "../../core/skeleton";
 
 export default function DemoCardComponent(
-  { data, setPage, total, page, loadedData }: {
+  { data, setPagination, total, page, loadedData }: {
   data: IData<IDocs> | undefined;
   total: number;
   page: number;
-  setPage: Dispatch<SetStateAction<number>>;
+  setPagination: Dispatch<SetStateAction<{
+    page: number;
+    pagesize: number;
+  }>>;
   loadedData: IDocs[] | undefined;
   }
 ) {
@@ -22,7 +25,10 @@ export default function DemoCardComponent(
   }, [data, total, page])
 
   const handlePagination = useCallback((): void => {
-    setPage(prev => prev + 1)
+    setPagination(prev => ({
+      ...prev,
+      page: prev.page + 1
+    }))
   }, [])
   
   return (
@@ -34,6 +40,7 @@ export default function DemoCardComponent(
         width: '100%',
       }}
     >
+      {/* clientheight + scrollTop === scrollheight */}
       <InfiniteScroll
         scrollableTarget="scrollableDiv"
         dataLength={loadedData?.length || 0}
@@ -55,13 +62,19 @@ export default function DemoCardComponent(
         }
       >
         <Row
-          gutter={16}
+          gutter={[16, 16]}
         >
           {
             loadedData?.map((item) => (
-              <Col span={8} key={item._id}>
+              <Col
+                key={item._id}
+                span={8}
+                xs={24}
+                sm={12}
+                md={8}
+              >
                 <Card
-                  style={{ width: 340, marginTop: 16 }}
+                  style={{ width: '100%', marginTop: 16, height: '100%' }}
                   bordered
                   hoverable
                 >
