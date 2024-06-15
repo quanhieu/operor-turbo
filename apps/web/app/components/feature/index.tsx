@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Space, Spin, Switch } from "antd";
+import { AppstoreOutlined, BarsOutlined } from '@ant-design/icons';
+import { Segmented } from 'antd';
 import { getUserList } from "../../services/user";
-import SkeletonComponent from "../core/skeleton";
 import TableDemo from "./demo-table";
 import DemoCardComponent from "./demo-card";
-import { IData, IDocs } from "../../interfaces";
-import { Switch } from "antd";
+import { IDocs } from "../../interfaces";
 import { useQuery } from "@tanstack/react-query";
 
 export default function DemoComponent({ styles }: { styles: any}) {
@@ -38,6 +39,7 @@ export default function DemoComponent({ styles }: { styles: any}) {
 
   useEffect(() => {
     if (isCheck) {
+      setLoadedData([])
       setPagination((prev) => ({
         ...prev,
         page: 1
@@ -47,14 +49,19 @@ export default function DemoComponent({ styles }: { styles: any}) {
 
   return (
     <div className={styles.hero}>
-      <Switch
-        checkedChildren="Table"
-        checked={isCheck}
-        onChange={() => setIsCheck(!isCheck)}
+      <Segmented
+        options={[
+          { label: 'List', value: false, icon: <AppstoreOutlined /> },
+          { label: 'Table', value: true, icon: <BarsOutlined /> },
+        ]}
+        value={isCheck}
+        onChange={(value) => setIsCheck(value)}
         style={{ position: 'absolute', right: 10, top: 10, zIndex: 2 }}
+        size="large"
       />
       <div className={styles.heroContent}>
         <div className={styles.logos}>
+          <Spin size="large" style={{ position: 'fixed' }} spinning={isLoading} >
           {
             isCheck
             ? <TableDemo
@@ -72,6 +79,7 @@ export default function DemoComponent({ styles }: { styles: any}) {
               loadedData={loadedData}
             />
           }
+          </Spin>
         </div>
       </div>
     </div>
