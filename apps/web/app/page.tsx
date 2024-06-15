@@ -14,34 +14,10 @@ export default function Page(): JSX.Element {
     <ErrorBoundary>
       <ConfigProvider theme={theme}>
         <main className={styles.main}>
-          {/* <div className={styles.description}>
-            <div>
-              <a
-                href="https://vercel.com?utm_source=create-turbo&utm_medium=basic&utm_campaign=create-turbo"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                By{" "}
-                <Image
-                  alt="Vercel Logo"
-                  className={styles.vercelLogo}
-                  height={24}
-                  priority
-                  src="/vercel.svg"
-                  width={100}
-                />
-              </a>
-            </div>
-          </div> */}
-
           <DemoComponent
             styles={styles}
           />
           <GradientBackground className={styles.backgroundGradient} conic styles={styles} />
-
-          {/* <div className={styles.grid}>
-            bottom
-          </div> */}
         </main>
       </ConfigProvider>
     </ErrorBoundary>

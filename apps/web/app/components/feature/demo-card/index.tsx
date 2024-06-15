@@ -35,7 +35,7 @@ export default function DemoCardComponent(
     <div
       id="scrollableDiv"
       style={{
-        height: 'calc(100vh - 10em)',
+        height: 'calc(100vh - 16vh)',
         overflow: 'auto',
         width: '100%',
       }}
