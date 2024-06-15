@@ -38,7 +38,9 @@ export default function DemoComponent({ styles }: { styles: any}) {
   }, [data])
 
   const onToggle = useCallback((val: boolean) => {
-    setLoadedData([])
+    if (pagination.page > 1) {
+      setLoadedData([])
+    }
     setPagination((prev) => ({
       ...prev,
       page: 1
