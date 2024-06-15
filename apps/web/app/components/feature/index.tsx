@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Space, Spin, Switch } from "antd";
 import { AppstoreOutlined, BarsOutlined } from '@ant-design/icons';
 import { Segmented } from 'antd';
@@ -37,15 +37,14 @@ export default function DemoComponent({ styles }: { styles: any}) {
     }
   }, [data])
 
-  useEffect(() => {
-    if (isCheck) {
-      setLoadedData([])
-      setPagination((prev) => ({
-        ...prev,
-        page: 1
-      }))
-    }
-  }, [isCheck])
+  const onToggle = useCallback((val: boolean) => {
+    setLoadedData([])
+    setPagination((prev) => ({
+      ...prev,
+      page: 1
+    }))
+    setIsCheck(val)
+  }, [[]])
 
   return (
     <div className={styles.hero}>
@@ -55,7 +54,7 @@ export default function DemoComponent({ styles }: { styles: any}) {
           { label: 'Table', value: true, icon: <BarsOutlined /> },
         ]}
         value={isCheck}
-        onChange={(value) => setIsCheck(value)}
+        onChange={onToggle}
         style={{ position: 'absolute', right: 10, top: 10, zIndex: 2 }}
         size="large"
       />
