@@ -15,42 +15,6 @@ export default function DemoComponent({ styles }: { styles: any}) {
     pagesize: 10,
   })
   const totalRecord = useRef(0)
-  // const [data, setData] = useState<IData<IDocs>>()
-  // const isLoading = useRef(false)
-
-  // const isDifferentData = useCallback((res: IData<IDocs>, compareData: IDocs[]): boolean => {
-  //   const isDifferent = res?.docs?.some((item) => {
-  //     return compareData?.every((loadedItem) => loadedItem._id !== item._id)
-  //   })
-  //   return isDifferent
-  // }, [])
-
-  // const fetchUserList = useCallback(async () => {
-  //   try {
-  //     isLoading.current = true
-  //     const res = await getUserList(pagination.page, pagination.pagesize)
-  //     isLoading.current = false
-  //     if (isDifferentData(res, loadedData || [])) {
-  //       setLoadedData(
-  //         prev => prev ? [...prev, ...res.docs] : res.docs
-  //       )
-  //       setData(res)
-  //     }
-  //     if (pagination.page !== res.page) {
-  //       setPagination({
-  //         page: pagination.page,
-  //         pagesize: res.limit,
-  //       })
-  //     }
-  //   } catch (err) {
-  //     console.error(err)
-  //     isLoading.current = false
-  //   }
-  // }, [pagination, isDifferentData, loadedData])
-
-  // useEffect(() => {
-  //   fetchUserList()
-  // }, [pagination.page])
 
   const { data, isLoading } = useQuery({
     queryKey: ["get-user-list", pagination.page, pagination.pagesize],
